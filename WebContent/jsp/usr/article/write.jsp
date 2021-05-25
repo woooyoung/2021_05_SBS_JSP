@@ -24,7 +24,7 @@
 			<div>
 				<div>제목</div>
 				<div>
-					<input type="text" maxlength="50" placeholder="제목을 입력해주세요" />
+					<input name="title" type="text" maxlength="50" placeholder="제목을 입력해주세요" />
 				</div>
 			</div>
 
@@ -33,7 +33,7 @@
 			<div>
 				<div>내용</div>
 				<div>
-					<textarea placeholder="내용을 입력해주세요" maxlength="5000" name="body"></textarea>
+					<textarea name="body" placeholder="내용을 입력해주세요" maxlength="5000" ></textarea>
 				</div>
 			</div>
 
