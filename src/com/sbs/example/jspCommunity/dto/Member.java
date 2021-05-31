@@ -4,19 +4,115 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Member {
-	public int id;
-	public LocalDateTime regDate;
-	public LocalDateTime updateDate;
-	public String loginId;
-	public String loginPw;
-	public String name;
-	public String nickname;
-	public String email;
-	public int authLevel;
+	private int id;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
+	private String loginId;
+	private String loginPw;
+	private String name;
+	private String nickname;
+	private String email;
+	private int authLevel;
 
-	public String extra__writer;
-	public String extra__boardName;
-	public String extra__boardCode;
+	private String extra__writer;
+	private String extra__boardName;
+	private String extra__boardCode;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(LocalDateTime regDate) {
+		this.regDate = regDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+
+	public String getLoginPw() {
+		return loginPw;
+	}
+
+	public void setLoginPw(String loginPw) {
+		this.loginPw = loginPw;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getAuthLevel() {
+		return authLevel;
+	}
+
+	public void setAuthLevel(int authLevel) {
+		this.authLevel = authLevel;
+	}
+
+	public String getExtra__writer() {
+		return extra__writer;
+	}
+
+	public void setExtra__writer(String extra__writer) {
+		this.extra__writer = extra__writer;
+	}
+
+	public String getExtra__boardName() {
+		return extra__boardName;
+	}
+
+	public void setExtra__boardName(String extra__boardName) {
+		this.extra__boardName = extra__boardName;
+	}
+
+	public String getExtra__boardCode() {
+		return extra__boardCode;
+	}
+
+	public void setExtra__boardCode(String extra__boardCode) {
+		this.extra__boardCode = extra__boardCode;
+	}
 
 	public Member(Map<String, Object> map) {
 		this.id = (int) map.get("id");

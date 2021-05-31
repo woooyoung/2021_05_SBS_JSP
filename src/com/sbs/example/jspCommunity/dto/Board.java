@@ -4,11 +4,52 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Board {
-	public int id;
-	public LocalDateTime regDate;
-	public LocalDateTime updateDate;
-	public String code;
-	public String name;
+	private int id;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(LocalDateTime regDate) {
+		this.regDate = regDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private String code;
+	private String name;
 
 	public Board(Map<String, Object> map) {
 		this.id = (int) map.get("id");

@@ -5,16 +5,15 @@
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
 	Board board = (Board) request.getAttribute("board");
-	Article article = (Article) request.getAttribute("article");
 	
-	String pageTitle = board.name + "게시물 수정페이지";
+	String pageTitle = board.getName() + "게시물 수정페이지";
 %>
 <%@ include file="../../part/head.jspf" %>
 <h1><%=pageTitle%></h1>
 
 	<div>
 		<form action="doModify" method="POST">
-			<input type="hidden" name="id" value="<%=article.id%>" /> 
+			<input type="hidden" name="id" value="${article.id}" /> 
 			<input type="hidden" name="memberId" value="1" />
 
 			<hr />
@@ -23,7 +22,7 @@
 				<div>제목</div>
 				<div>
 					<input name="title" type="text" maxlength="50"
-						placeholder="제목을 입력해주세요"  value="<%=article.title%>"/>
+						placeholder="제목을 입력해주세요"  value="${article.title}"/>
 				</div>
 			</div>
 
@@ -32,7 +31,7 @@
 			<div>
 				<div>내용</div>
 				<div>
-					<textarea name="body" placeholder="내용을 입력해주세요"  maxlength="5000" ><%=article.body%></textarea>
+					<textarea name="body" placeholder="내용을 입력해주세요"  maxlength="5000" >${article.body}</textarea>
 				</div>
 			</div>
 

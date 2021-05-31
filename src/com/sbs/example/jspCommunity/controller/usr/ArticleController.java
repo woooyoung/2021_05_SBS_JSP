@@ -91,7 +91,7 @@ public class ArticleController {
 
 		articleService.delete(id);
 
-		int boardId = article.boardId;
+		int boardId = article.getBoardId();
 
 		req.setAttribute("alertMsg", id + "번 게시물이 삭제되었습니다.");
 		req.setAttribute("replaceUrl", String.format("list?boardId=%d", boardId));
@@ -110,7 +110,7 @@ public class ArticleController {
 			return "common/redirect";
 		}
 
-		Board board = articleService.getBoardById(article.boardId);
+		Board board = articleService.getBoardById(article.getBoardId());
 
 		req.setAttribute("article", article);
 		req.setAttribute("board", board);
@@ -131,7 +131,7 @@ public class ArticleController {
 
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 
-		if (article.memberId != memberId) {
+		if (article.getMemberId() != memberId) {
 			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 없습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
