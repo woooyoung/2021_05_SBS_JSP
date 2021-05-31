@@ -7,17 +7,13 @@
 <%
 	Board board = (Board) request.getAttribute("board");
 	List<Article> articles = (List<Article>) request.getAttribute("articles");
-%>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title><%=board.name%> 게시물 리스트</title>
-</head>
-<body>
-	<h1><%=board.name%> 게시물 리스트
-	</h1>
 	
+	String pageTitle =  board.name + " 게시물 리스트";
+%>
+<%@ include file="../../part/head.jspf" %>
+
+<h1><%=pageTitle%></h1>
+
 	<div>
 		<a href="write?boardId=<%= request.getParameter("boardId")%>">게시물 작성</a>
 	</div>
@@ -40,5 +36,4 @@
 	<%
 		}
 	%>
-</body>
-</html>
+<%@ include file="../../part/foot.jspf"%>

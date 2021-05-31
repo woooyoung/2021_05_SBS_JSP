@@ -6,15 +6,11 @@
 <%
 	Board board = (Board) request.getAttribute("board");
 	Article article = (Article) request.getAttribute("article");
+	
+	String pageTitle = board.name + "게시물 수정페이지";
 %>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title>게시물 수정페이지</title>
-</head>
-<body>
-	<h1>게시물 수정페이지</h1>
+<%@ include file="../../part/head.jspf" %>
+<h1><%=pageTitle%></h1>
 
 	<div>
 		<form action="doModify" method="POST">
@@ -51,6 +47,4 @@
 			</div>
 		</form>
 	</div>
-
-</body>
-</html>
+<%@ include file="../../part/foot.jspf"%>
