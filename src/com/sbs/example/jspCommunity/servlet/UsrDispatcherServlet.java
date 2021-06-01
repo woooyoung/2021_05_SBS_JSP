@@ -15,7 +15,7 @@ import com.sbs.example.jspCommunity.controller.usr.MemberController;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
 @WebServlet("/usr/*")
-public class DispatcherServlet extends HttpServlet {
+public class UsrDispatcherServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
