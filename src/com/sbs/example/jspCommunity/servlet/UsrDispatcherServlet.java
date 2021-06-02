@@ -15,25 +15,11 @@ import com.sbs.example.jspCommunity.controller.UsrMemberController;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
 @WebServlet("/usr/*")
-public class UsrDispatcherServlet extends HttpServlet {
+public class UsrDispatcherServlet extends DispatcherServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html; charset=UTF-8");
-
-		String requestUri = req.getRequestURI();
-		String[] requestUriBits = requestUri.split("/");
-
-		if (requestUriBits.length < 5) {
-			resp.getWriter().append("올바른 요청이 아닙니다.");
-			return;
-		}
-
-		String controllerName = requestUriBits[3];
-		String actionMethodName = requestUriBits[4];
-
-		MysqlUtil.setDBInfo("127.0.0.1", "sbsst", "sbs123414", "jspCommunity");
+	protected String doAction(HttpServletRequest req, HttpServletResponse resp, String controllerName,
+			String actionMethodName) {
 
 		String jspPath = null;
 
@@ -69,16 +55,7 @@ public class UsrDispatcherServlet extends HttpServlet {
 
 		}
 
-		MysqlUtil.closeConnection();
-
-		RequestDispatcher rd = req.getRequestDispatcher("/jsp/" + jspPath + ".jsp");
-		rd.forward(req, resp);
-
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+		return jspPath;
 	}
 
 }
