@@ -1,5 +1,6 @@
 package com.sbs.example.jspCommunity.dto;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import lombok.Data;
@@ -7,8 +8,8 @@ import lombok.Data;
 @Data
 public class Member {
 	private int id;
-	private String regDate;
-	private String updateDate;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
 	private String loginId;
 	private String loginPw;
 	private String name;
@@ -19,8 +20,8 @@ public class Member {
 
 	public Member(Map<String, Object> map) {
 		this.id = (int) map.get("id");
-		this.regDate = (String) map.get("regDate");
-		this.updateDate = (String) map.get("updateDate");
+		this.regDate = (LocalDateTime) map.get("regDate");
+		this.updateDate = (LocalDateTime) map.get("updateDate");
 		this.loginId = (String) map.get("loginId");
 		this.loginPw = (String) map.get("loginPw");
 		this.name = (String) map.get("name");
