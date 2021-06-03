@@ -37,7 +37,7 @@ public class UsrMemberController {
 		String nickname = req.getParameter("nickname");
 		String email = req.getParameter("email");
 		String cellphoneNo = req.getParameter("cellphoneNo");
-
+		
 		Map<String, Object> joinArgs = new HashMap<>();
 		joinArgs.put("loginId", loginId);
 		joinArgs.put("loginPw", loginPw);
@@ -50,7 +50,6 @@ public class UsrMemberController {
 
 		req.setAttribute("alertMsg", newMemberId + "번 회원이 생성되었습니다.");
 		req.setAttribute("replaceUrl", "join");
-
 		return "common/redirect";
 	}
 
