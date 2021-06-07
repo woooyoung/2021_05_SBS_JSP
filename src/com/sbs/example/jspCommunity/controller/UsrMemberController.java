@@ -130,20 +130,37 @@ public class UsrMemberController {
 	}
 
 	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
+
 		HttpSession session = req.getSession();
-		
-		if (session.getAttribute("loginedMemberId") != null) {
+
+		if (session.getAttribute("loginedMemberId") == null) {
 			req.setAttribute("alertMsg", "이미 로그아웃 상태입니다.");
 			req.setAttribute("historyBack", true);
-
 			return "common/redirect";
 		}
+
 		session.removeAttribute("loginedMemberId");
 
 		req.setAttribute("alertMsg", "로그아웃 되었습니다.");
 		req.setAttribute("replaceUrl", "../home/main");
-
 		return "common/redirect";
+	}
+
+	public String getLoginIdDup(HttpServletRequest req, HttpServletResponse resp) {
+		String loginId = req.getParameter("loginId");
+
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		String data = "";
+
+		if (member != null) {
+			data = "NO";
+		} else {
+			data = "YES";
+		}
+
+		req.setAttribute("data", data);
+		return "common/pure";
 	}
 
 }
