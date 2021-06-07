@@ -10,7 +10,7 @@
 		let DoJoinForm__submited = false;
 		let DoJoinForm__checkedLoginId = "";
 
-		//로그인 아이디 중복체크
+		// 로그인 아이디 중복체크
 		function DoJoinForm__checkLoginIdDup(el) {
 			const from = $(el).closest('form').get(0);
 			const loginId = from.loginId.value;
@@ -21,15 +21,15 @@
 					loginId
 				},
 				function(data) {
-					if ( data == "YES" ) {
-						alert("해당 로그인 아이디는 사용가능합니다.");
-						DoJoinForm__checkedLoginId = loginId;
+					if ( data.msg ) {
+						alert(data.msg);
 					}
-					else {
-						alert("해당 로그인 아이디는 이미 사용중 입니다.");
+				
+					if ( data.resultCode.substr(0, 2) == "S-" ) {
+						DoJoinForm__checkedLoginId = data.loginId;
 					}
 				},
-				"html"
+				"json"
 			);
 		}
 
@@ -129,7 +129,8 @@
 			<div>
 				<input name="loginId" type="text" maxlength="50"
 					placeholder="로그인 아이디를 입력해주세요." />
-				<button onclick="DoJoinForm__checkLoginIdDup(this);" name="btnLoginIdDupCheck" type="button">중복체크</button>				
+				<button onclick="DoJoinForm__checkLoginIdDup(this);"
+					name="btnLoginIdDupCheck" type="button">중복체크</button>
 			</div>
 		</div>
 
