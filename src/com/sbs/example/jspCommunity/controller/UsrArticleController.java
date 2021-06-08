@@ -51,9 +51,7 @@ public class UsrArticleController {
 
 	public String showWrite(HttpServletRequest req, HttpServletResponse resp) {
 
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
+		if ((boolean) req.getAttribute("isLogined") == false) {
 			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			req.setAttribute("historyBack", true);
 
@@ -69,23 +67,21 @@ public class UsrArticleController {
 	}
 
 	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
-		
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") == null) {
+		if ((boolean) req.getAttribute("isLogined") == false) {
 			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			req.setAttribute("historyBack", true);
 
 			return "common/redirect";
 		}
-		
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
+
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 
 		Map<String, Object> writeArgs = new HashMap<>();
-		writeArgs.put("memberId", memberId);
+		writeArgs.put("memberId", loginedMemberId);
 		writeArgs.put("boardId", boardId);
 		writeArgs.put("title", title);
 		writeArgs.put("body", body);
@@ -99,22 +95,28 @@ public class UsrArticleController {
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
-		
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") == null) {
+		if ((boolean) req.getAttribute("isLogined") == false) {
 			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			req.setAttribute("historyBack", true);
 
 			return "common/redirect";
 		}
-		
+
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticleById(id);
 
 		if (article == null) {
 			req.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+
+		if (article.getMemberId() != loginedMemberId) {
+			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 없습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
@@ -130,22 +132,28 @@ public class UsrArticleController {
 	}
 
 	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
-		
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") == null) {
+		if ((boolean) req.getAttribute("isLogined") == false) {
 			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			req.setAttribute("historyBack", true);
 
 			return "common/redirect";
 		}
-		
+
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticleById(id);
 
 		if (article == null) {
 			req.setAttribute("alertMsg", id + "번 게시물은 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+
+		if (article.getMemberId() != loginedMemberId) {
+			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 없습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
@@ -159,16 +167,14 @@ public class UsrArticleController {
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
-		
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") == null) {
+		if ((boolean) req.getAttribute("isLogined") == false) {
 			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
 			req.setAttribute("historyBack", true);
 
 			return "common/redirect";
 		}
-		
+
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticleById(id);
@@ -179,9 +185,9 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		int memberId = Integer.parseInt(req.getParameter("memberId"));
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		if (article.getMemberId() != memberId) {
+		if (article.getMemberId() != loginedMemberId) {
 			req.setAttribute("alertMsg", id + "번 게시물에 대한 권한이 없습니다.");
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
