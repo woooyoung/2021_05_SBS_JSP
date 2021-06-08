@@ -51,13 +51,6 @@ public class UsrArticleController {
 
 	public String showWrite(HttpServletRequest req, HttpServletResponse resp) {
 
-		if ((boolean) req.getAttribute("isLogined") == false) {
-			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			req.setAttribute("historyBack", true);
-
-			return "common/redirect";
-		}
-
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardById(boardId);
@@ -67,13 +60,6 @@ public class UsrArticleController {
 	}
 
 	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
-
-		if ((boolean) req.getAttribute("isLogined") == false) {
-			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			req.setAttribute("historyBack", true);
-
-			return "common/redirect";
-		}
 
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
@@ -95,13 +81,6 @@ public class UsrArticleController {
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
-
-		if ((boolean) req.getAttribute("isLogined") == false) {
-			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			req.setAttribute("historyBack", true);
-
-			return "common/redirect";
-		}
 
 		int id = Integer.parseInt(req.getParameter("id"));
 
@@ -133,13 +112,6 @@ public class UsrArticleController {
 
 	public String showModify(HttpServletRequest req, HttpServletResponse resp) {
 
-		if ((boolean) req.getAttribute("isLogined") == false) {
-			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			req.setAttribute("historyBack", true);
-
-			return "common/redirect";
-		}
-
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticleById(id);
@@ -167,13 +139,6 @@ public class UsrArticleController {
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
-
-		if ((boolean) req.getAttribute("isLogined") == false) {
-			req.setAttribute("alertMsg", "로그인 후 이용해주세요.");
-			req.setAttribute("historyBack", true);
-
-			return "common/redirect";
-		}
 
 		int id = Integer.parseInt(req.getParameter("id"));
 
